@@ -96,6 +96,36 @@ header a{
     width: 100px;
     height: 100px;
 }
+.form_container{
+    width: 80%;
+}
+.form_container input{
+    background-color: #C4C4C4;
+    height: 30px;
+    border: none;
+    border-radius: 30px;
+    padding-left: 10px;
+    margin: 5px;
+}
+.form_container input ::placeholder{
+    color: #393939;
+}
+.btn_submit{
+    background-color: #008C49;
+    color: #ffffff;
+    height: 30px;
+    border: none;
+    border-radius: 30px;
+    padding-left: 10px;
+    margin: 5px;
+}
+.half_input{
+    width: 45%;
+}
+.full_input{
+    width: 95%;
+}
+
 
 /* cores de texto */
 .roxo,.roxo *{
