@@ -1,7 +1,14 @@
 html,body{
     font-family: 'Righteous', cursive;
-    margin:o;
+    margin:0;
     background-color: #f2f2f2;
+    color: #393939;
+}
+a{
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    color: #393939;
 }
 body{
     width: 100%;
@@ -11,15 +18,30 @@ body{
     align-items: center;
 }
 section{
-    width: 90%;
-    min-height: 700px;
+    width: 100%;
+    min-height: 550px;
     padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+h1{
+    font-size: 100px;
+}
+h2{
+    font-size: 50px;
+}
+h3{
+    font-size: 40px;
+}
+h4{
+    font-size: 18px;
+}
 p{
     max-width: 500px;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 .container{
     width: 100%;
@@ -39,7 +61,7 @@ p{
     align-items: center;
 }
 .envolvidos{
-    width: 390px;
+    width: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,4 +69,33 @@ p{
 .avatar{
     width: 100px;
     height: 100px;
+}
+
+/* cores de texto */
+.roxo,.roxo *{
+    color: #693AA6;
+}
+.branco,.branco *{
+    color: #ffffff;
+}
+.verde_escuro,.verde_escuro *{
+    color: #008C49;
+}
+.verde_claro,.verde_claro *{
+    color: #00E879;
+}
+.rosa,.rosa *{
+    color: #FF5CAA;
+}
+
+
+/*cores de fundo */
+.cinza_100{
+    background-color: #393939;
+}
+.cinza_50{
+    background-color: #707070;
+}
+.cinza_0{
+    background-color: #ffffff;
 }
