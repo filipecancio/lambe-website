@@ -120,10 +120,10 @@ header a{
     margin: 5px;
 }
 .half_input{
-    width: 45%;
+    width: 300px;
 }
 .full_input{
-    width: 95%;
+    width: 300px;
 }
 
 
@@ -174,5 +174,11 @@ header a{
     }
     .container{
         flex-direction: row;
+    }
+    .half_input{
+        width: 45%;
+    }
+    .full_input{
+        width: 95%;
     }
   }
