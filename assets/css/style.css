@@ -24,9 +24,13 @@ section{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 h1{
     font-size: 100px;
+    color: #ffffff;
+    text-shadow: 2px -1px 0px rgba(255, 0, 214, 0.68),
+                -2px -1px 0px rgba(85, 214, 24, 0.58);
 }
 h2{
     font-size: 50px;
@@ -98,4 +102,8 @@ p{
 }
 .cinza_0{
     background-color: #ffffff;
+}
+
+#hero{
+    background: url(../png/bg.png) no-repeat center;
 }
