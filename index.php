@@ -1,3 +1,60 @@
+<?php
+require_once 'request.php';
+$curl = new Comunicacao();
+
+if(isset($_POST['enviar'])) {
+    $dados = [];
+    $dados2 = [];
+    $relacao = [];
+
+   $dados['Nome'] = filter_input(INPUT_POST, 'name');
+   $dados['Sobrenome'] = filter_input(INPUT_POST, 'lastname');
+   $dados['CPF'] = filter_input(INPUT_POST, 'cpf');
+   $dados['Nascimento'] = filter_input(INPUT_POST, 'birthday');
+
+    #echo "<pre>";
+    #var_dump($dados);
+
+   
+
+    $dados2['Facebook'] = filter_input(INPUT_POST, 'facebook');
+    $dados2['Instagram'] = filter_input(INPUT_POST, 'instagram');
+    $dados2['Email'] = filter_input(INPUT_POST, 'email');
+    $dados2['Fone'] = filter_input(INPUT_POST, 'phone');
+    $dados2['avatar'] = filter_input(INPUT_POST, 'avatar');
+
+    #echo "<pre>";
+    #var_dump($dados2);
+
+
+
+    $curl->request('POST', 'https://cancio.appspot.com/pessoa', json_encode($dados));
+    $curl->request('POST', 'https://cancio.appspot.com/contato', json_encode($dados2));
+
+    $relacao['entity_1']['type'] = 'pessoa';
+    $relacao['entity_1']['name'] = 'Nome';
+    $relacao['entity_1']['value'] =  filter_input(INPUT_POST, 'name');
+    
+    $relacao['entity_2']['type'] = 'contato';
+    $relacao['entity_2']['name'] = 'Fone';
+    $relacao['entity_2']['value'] =  filter_input(INPUT_POST, 'phone');
+
+    $relacao['relationship'] = 'tem';
+
+    #echo "<pre>";
+    #var_dump(json_encode($relacao));
+
+    $curl->request('POST', 'https://cancio.appspot.com/relationship', json_encode($relacao));
+
+}
+    
+    $valor_get = $curl->request('GET', 'https://cancio.appspot.com/pessoa');
+    $resultados = json_decode($valor_get);
+
+    header ('Location: index.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,20 +191,38 @@
         <h2>Contato</h2>
         <div class="container">
             <div class="half_container">
-                <form id="form_contact" class="form_container">
-                    <input type="text" class="half_input" id="name" placeholder="Nome" />
-                    <input type="text" class="half_input" id="lastname" placeholder="Sobrenome" />
-                    <input type="text" class="half_input" id="cpf" placeholder="CPF" />
-                    <input type="date" class="half_input" id="birthday" placeholder="Nascimento" />
-                    <input type="text" class="half_input" id="facebook" placeholder="Facebook" />
-                    <input type="text" class="half_input" id="instagram" placeholder="Instagram" />
-                    <input type="text" class="full_input" id="email" placeholder="Email" />
-                    <input type="text" class="half_input" id="phone" placeholder="Fone" />
-                    <input type="tel" class="half_input" id="avatar" placeholder="avatar" />
-                    <button class="btn_submit full_input">Enviar</button>
+                <form id="form_contact" class="form_container" method="POST">
+                    <input type="text" class="half_input" name="name" id="name" placeholder="Nome" />
+                    <input type="text" class="half_input" name="lastname" id="lastname" placeholder="Sobrenome" />
+                    <input type="text" class="half_input" name="cpf" id="cpf" placeholder="CPF" />
+                    <input type="date" class="half_input" name="birthday" id="birthday" placeholder="Nascimento" />
+                    <input type="text" class="half_input" name="facebook" id="facebook" placeholder="Facebook" />
+                    <input type="text" class="half_input" name="instagram" id="instagram" placeholder="Instagram" />
+                    <input type="text" class="full_input" name="email" id="email" placeholder="Email" />
+                    <input type="text" class="half_input" name="phone" id="phone" placeholder="Fone" />
+                    <input type="tel" class="half_input" name="avatar" id="avatar" placeholder="avatar" />
+                    <button type="submit" name="enviar" class="btn_submit full_input">Enviar</button>
                 </form>
             </div>
-            <div class="half_container"></div>
+            <div class="half_container">
+            
+                    <table class="table table-bordered" style="min-width: 50%;">
+			<thead>
+				<tr>
+					<th class="th_nome" style="text-align: left;">Nome</th>
+					<th class="th_sobrenome" style="text-align: left;">Sobrenome</th>
+				</tr>
+			</thead>
+			<tbody>
+            <?php foreach($resultados as $linha) { ?>
+ 				<tr>
+					<td class="nome_tb"><?php echo $linha->Nome; ?></td>
+					<td class="sobrenome_tb"><?php echo $linha->Sobrenome; ?></td>
+					<td></td>
+				</tr>
+            <?php } ?>
+			</table>                    
+            </div>
         </div>
     </section>
 </body>
